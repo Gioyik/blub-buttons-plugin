@@ -1,0 +1,88 @@
+
+// btn Mixins
+// --------------------------------------------------
+
+@mixin btn-style($bg-color, $border-color, $active-bg-color, $active-border-color, $color) {
+  color: $color;
+  background-color: $bg-color;
+  border-color: $border-color;
+
+  // Give desktop users something to play with
+  &:hover {
+    color: $color;
+    text-decoration: none;
+  }
+  &.active, &:active {
+    background-color: $active-bg-color;
+    box-shadow: inset 0px 1px 3px rgba(0,0,0,0.15);
+    border-color: $active-border-color;
+  }
+}
+
+@mixin btn-clear($color, $font-size:"") {
+  &.btn-clear {
+    color: $color;
+    background: none;
+    border-color: transparent;
+    box-shadow: none;
+
+    @if $font-size != "" {
+      font-size: $font-size;
+    }
+  }
+  &.btn-icon {
+    background: none;
+    border-color: transparent;
+  }
+}
+
+@mixin btn-outline($color, $text-color:"") {
+  &.btn-outline {
+    background: transparent;
+    border-color: $color;
+    @if $text-color == "" {
+      $text-color: $color;
+    } 
+    color: $text-color;
+    &.active, &:active {
+      background-color: $color;
+      color: #fff;
+      box-shadow: none;
+    }
+  }
+}
+
+// Transition Mixins
+// --------------------------------------------------
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+          transition: $transition;
+}
+@mixin transition-delay($transition-delay) {
+  -webkit-transition-delay: $transition-delay;
+     -moz-transition-delay: $transition-delay;
+          transition-delay: $transition-delay;
+}
+@mixin transition-duration($transition-duration) {
+  -webkit-transition-duration: $transition-duration;
+     -moz-transition-duration: $transition-duration;
+          transition-duration: $transition-duration;
+}
+@mixin transition-timing-function($transition-timing) {
+   -webkit-transition-timing-function: $transition-timing;
+      -moz-transition-timing-function: $transition-timing;
+           transition-timing-function: $transition-timing;
+ }
+ @mixin transition-property($property) {
+  -webkit-transition-property: $property;
+     -moz-transition-property: $property;
+          transition-property: $property;
+}
+@mixin transition-transform($properties...) {
+  // special case cuz of transform vendor prefixes
+  -webkit-transition: -webkit-transform $properties;
+     -moz-transition: -moz-transform $properties;
+          transition: transform $properties;
+}
